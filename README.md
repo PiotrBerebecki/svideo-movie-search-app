@@ -68,3 +68,12 @@ resolve: {
  { render } from 'enzyme';  // deeper than above but slow
  { static } from 'enzyme';  // even deeper, using cheerio
 ```
+
+- Skip test by adding `x` before `it` or `describe`, e.g.
+
+```javascript
+xit('renders correctly', () => {
+  const component = shallow(<Search />);
+  expect(component).toMatchSnapshot();
+});
+```

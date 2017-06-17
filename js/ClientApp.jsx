@@ -1,24 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Landing from './Landing';
-import Search from './Search';
+import App from './App';
 
-const FourOhFour = () => <h1>404</h1>;
+const renderApp = () => {
+  render(<App />, document.getElementById('app'));
+};
+renderApp();
 
-function App() {
-  return (
-    <BrowserRouter>
-      <div className="app">
-        <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route path="/search" component={Search} />
-          <Route component={FourOhFour} />
-        </Switch>
-      </div>
-    </BrowserRouter>
-  );
+// only in development, not in production
+// but it is still sent to the client so if desired
+// use an npm module to remove it for productionß
+if (module.hot) {
+  module.hot.accept('./App', () => {
+    renderApp();
+  });
 }
-
-render(<App />, document.getElementById('app'));
