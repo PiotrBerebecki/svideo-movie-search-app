@@ -20,5 +20,8 @@ module.exports = {
     'no-unused-vars': 0,
     'no-console': 0,
     'react/prop-types': 0,
+    'arrow-body-style': 0,
+    // 'import/prefer-default-export': 0,
+    // 'prefer-default-export': 0,
   },
 };

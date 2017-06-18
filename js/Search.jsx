@@ -1,35 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 
 import Header from './Header';
 import ShowCard from './ShowCard';
+import { setSearchTerm } from './flux/actions';
 
-class Search extends Component {
-  state = {
-    searchTerm: '',
-  };
-
-  handleSearchTermChange = e => {
-    this.setState({
-      searchTerm: e.target.value,
-    });
-  };
-  render() {
-    const regex = new RegExp(`${this.state.searchTerm}`, 'i');
-    return (
-      <div className="search">
-        <Header
-          searchTerm={this.state.searchTerm}
-          handleSearchTermChange={this.handleSearchTermChange}
-          showSearch
-        />
-        <div>
-          {this.props.shows
-            .filter(show => regex.test(`${show.title}${show.description}`))
-            .map(show => <ShowCard key={show.imdbID} {...show} />)}
-        </div>
+function Search(props) {
+  const regex = new RegExp(`${props.searchTerm}`, 'i');
+  return (
+    <div className="search">
+      <Header showSearch />
+      <div className="search__list">
+        {props.shows
+          .filter(show => regex.test(`${show.title}${show.description}`))
+          .map(show => <ShowCard key={show.imdbID} {...show} />)}
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-export default Search;
+const mapStateToProps = state => {
+  return {
+    searchTerm: state.searchTerm,
+  };
+};
+
+export default connect(mapStateToProps)(Search);

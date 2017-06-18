@@ -1,0 +1,3 @@
+export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
+export const SET_SEARCH_TERM1 = 'SET_SEARCH_TERM';
+// export const SET_SEARCH_TERM4 = 'SET_SEARCH_TERM';

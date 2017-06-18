@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { setSearchTerm } from './flux/actions';
 
 function Header(props) {
   let utilSpace;
@@ -30,4 +33,18 @@ function Header(props) {
   );
 }
 
-export default Header;
+const mapStateToProps = state => {
+  return {
+    searchTerm: state.searchTerm,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleSearchTermChange(e) {
+      dispatch(setSearchTerm(e.target.value));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

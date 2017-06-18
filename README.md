@@ -5,6 +5,7 @@
 ## Cool tech included:
 
 - React
+- Redux
 - Hot Module Replacement
 - Styled Components
 

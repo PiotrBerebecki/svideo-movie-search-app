@@ -1,15 +1,29 @@
 import React from 'react';
 import { string } from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const Wrapper = styled.div`
-  ${/* width: 32%; */ ''}
-  width: 90%;
+const Wrapper = styled(Link)`
+  width: 95%;
   border: 2px solid #333;
   border-radius: 4px;
   margin-bottom: 25px;
   padding-right: 10px;
   overflow: hidden;
+  color: black;
+  text-decoration: none;
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgba(255,255,255,0.25);
+  }
+
+  @media (min-width: 61em) {
+    width: 45%;
+  }
+
+  @media (min-width: 87.5em) {
+    width: 30%;
+  }
 `;
 
 const Image = styled.img`
@@ -18,9 +32,9 @@ const Image = styled.img`
   margin-right: 10px;
 `;
 
-function ShowCard({ title, poster, description, year }) {
+function ShowCard({ title, poster, description, year, imdbID }) {
   return (
-    <Wrapper>
+    <Wrapper to={`/details/${imdbID}`}>
       <Image src={`/public/img/posters/${poster}`} alt={`${title} poster`} />
       <div>
         <h3>{title}</h3>
