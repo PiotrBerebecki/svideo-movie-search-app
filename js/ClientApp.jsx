@@ -13,6 +13,7 @@ renderApp();
 // use an npm module to remove it for productionß
 if (module.hot) {
   module.hot.accept('./App', () => {
+    console.clear();
     renderApp();
   });
 }

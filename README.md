@@ -2,6 +2,12 @@
 
 [gh-page]: http://btholt.github.io/complete-intro-to-react/
 
+## Cool tech included:
+
+- React
+- Hot Module Replacement
+- Styled Components
+
 ## Notes
 
 - Use `enzyme`'s `shallow` instead of `renderer` to test only the current component.

@@ -17,6 +17,8 @@ module.exports = {
   },
   rules: {
     'func-names': 0,
+    'no-unused-vars': 0,
     'no-console': 0,
+    'react/prop-types': 0,
   },
 };
