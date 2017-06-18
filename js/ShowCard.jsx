@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { string } from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -32,17 +32,20 @@ const Image = styled.img`
   margin-right: 10px;
 `;
 
-function ShowCard({ title, poster, description, year, imdbID }) {
-  return (
-    <Wrapper to={`/details/${imdbID}`}>
-      <Image src={`/public/img/posters/${poster}`} alt={`${title} poster`} />
-      <div>
-        <h3>{title}</h3>
-        <h4>({year})</h4>
-        <p>{description}</p>
-      </div>
-    </Wrapper>
-  );
+class ShowCard extends PureComponent {
+  render() {
+    const { title, poster, description, year, imdbID } = this.props;
+    return (
+      <Wrapper to={`/details/${imdbID}`}>
+        <Image src={`/public/img/posters/${poster}`} alt={`${title} poster`} />
+        <div>
+          <h3>{title}</h3>
+          <h4>({year})</h4>
+          <p>{description}</p>
+        </div>
+      </Wrapper>
+    );
+  }
 }
 
 ShowCard.propTypes = {

@@ -2,6 +2,16 @@
 
 [gh-page]: http://btholt.github.io/complete-intro-to-react/
 
+## Getting started
+
+```sh
+# run api server
+yarn api
+
+# run app
+yarn dev
+```
+
 ## Cool tech included:
 
 - React
@@ -83,4 +93,21 @@ xit('renders correctly', () => {
   const component = shallow(<Search />);
   expect(component).toMatchSnapshot();
 });
+```
+
+- `react-addons-perf`
+
+`ClientApp.js` / `index.js`
+
+```javascript
+import Perf from 'react-addons-perf';
+
+window.Perf = Perf;
+Perf.start();
+```
+
+The above will start recording. Browse around. Go to console in Chrome:
+```javascript
+Perf.stop();
+Perf.printWaster();
 ```
