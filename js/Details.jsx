@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Header from './Header';
 import Spinner from './Spinner';
-import { getApiDetails } from './flux/actions';
+import getApiDetails from './flux/asyncActions';
 
 class Details extends Component {
   componentDidMount() {

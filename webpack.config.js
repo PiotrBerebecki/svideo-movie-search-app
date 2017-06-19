@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = {
+const config = {
   context: __dirname,
   entry: [
     // CLIENT SIDE RENDERING
@@ -60,3 +60,11 @@ module.exports = {
     ],
   },
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.entry = './js/ClientApp.jsx';
+  config.devtool = false;
+  config.plugins = [];
+}
+
+module.exports = config;

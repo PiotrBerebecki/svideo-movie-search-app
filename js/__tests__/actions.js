@@ -1,5 +1,7 @@
-import { setSearchTerm, addApiData, getApiDetails } from './../flux/actions';
 import moxios from 'moxios';
+
+import { setSearchTerm, addApiData } from './../flux/actions';
+import getApiDetails from './../flux/asyncActions';
 
 describe('actions', () => {
   it('setSearchTerm', () => {
