@@ -95,7 +95,7 @@ xit('renders correctly', () => {
 });
 ```
 
-- `react-addons-perf`
+- `react-addons-perf`. Try below, altough it will change for React 16
 
 `ClientApp.js` / `index.js`
 

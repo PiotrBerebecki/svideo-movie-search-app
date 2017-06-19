@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 
 import Header from './Header';
 import Spinner from './Spinner';
+import { getApiDetails } from './flux/actions';
 
 class Details extends Component {
-  state = {
-    apiData: { rating: '' },
-  };
-
   componentDidMount() {
-    axios
-      .get(`http://localhost:3000/${this.props.show.imdbID}`)
-      .then(response => {
-        this.setState({
-          apiData: response.data,
-        });
-      });
+    if (!this.props.rating) {
+      this.props.getApiDetails();
+    }
   }
 
   render() {
     const { title, description, year, poster, trailer } = this.props.show;
-    const { rating } = this.state.apiData;
+    const { rating } = this.props;
 
     let ratingComponent;
     if (rating) {
@@ -56,4 +49,21 @@ class Details extends Component {
   }
 }
 
-export default Details;
+const mapStateToProps = (state, ownProps) => {
+  const apiData = state.apiData[ownProps.show.imdbID]
+    ? state.apiData[ownProps.show.imdbID]
+    : {};
+  return {
+    rating: apiData.rating,
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getApiDetails() {
+      dispatch(getApiDetails(ownProps.show.imdbID));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Details);
