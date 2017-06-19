@@ -14,6 +14,7 @@ yarn dev
 
 ## Cool tech included:
 
+- Server side rendering
 - React
 - Redux
 - Hot Module Replacement

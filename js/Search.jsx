@@ -5,7 +5,7 @@ import Header from './Header';
 import ShowCard from './ShowCard';
 import { setSearchTerm } from './flux/actions';
 
-function Search(props) {
+export function Search(props) {
   const regex = new RegExp(`${props.searchTerm}`, 'i');
   return (
     <div className="search">

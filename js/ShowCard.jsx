@@ -36,7 +36,7 @@ class ShowCard extends PureComponent {
   render() {
     const { title, poster, description, year, imdbID } = this.props;
     return (
-      <Wrapper to={`/details/${imdbID}`}>
+      <Wrapper className="show-card" to={`/details/${imdbID}`}>
         <Image src={`/public/img/posters/${poster}`} alt={`${title} poster`} />
         <div>
           <h3>{title}</h3>
