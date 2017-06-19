@@ -1,10 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import Landing from './Landing';
-import Search from './Search';
-import Details from './Details';
+import AsyncRoute from './AsyncRoute';
 import preload from './../data.json';
 import store from './flux/store';
 
@@ -12,31 +10,46 @@ const FourOhFour = () => <h1>404</h1>;
 
 function App() {
   return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <div className="app">
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route
-              path="/search"
-              component={props => <Search shows={preload.shows} {...props} />}
-            />
-            <Route
-              path="/details/:id"
-              component={props => (
-                <Details
-                  show={preload.shows.find(
-                    show => show.imdbID === props.match.params.id
+    <Provider store={store}>
+      <div className="app">
+        <Switch>
+          <Route
+            exact
+            path="/"
+            component={props => (
+              <AsyncRoute props={props} loadingPromise={import('./Landing')} />
+            )}
+          />
+          <Route
+            path="/search"
+            component={props => (
+              <AsyncRoute
+                props={Object.assign({ shows: preload.shows }, props)}
+                loadingPromise={import('./Search')}
+              />
+            )}
+          />
+          <Route
+            path="/details/:id"
+            component={props => {
+              const selectedShow = preload.shows.find(
+                show => show.imdbID === props.match.params.id
+              );
+              return (
+                <AsyncRoute
+                  props={Object.assign(
+                    { show: selectedShow, match: {} },
+                    props
                   )}
-                  {...props}
+                  loadingPromise={import('./Details')}
                 />
-              )}
-            />
-            <Route component={FourOhFour} />
-          </Switch>
-        </div>
-      </Provider>
-    </BrowserRouter>
+              );
+            }}
+          />
+          <Route component={FourOhFour} />
+        </Switch>
+      </div>
+    </Provider>
   );
 }
 

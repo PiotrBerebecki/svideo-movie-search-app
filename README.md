@@ -14,7 +14,8 @@ yarn dev
 
 ## Cool tech included:
 
-- Server side rendering
+- Server side rendering including routing with React Router
+- Code splitting
 - React
 - Redux
 - Hot Module Replacement

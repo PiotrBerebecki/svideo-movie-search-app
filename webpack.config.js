@@ -4,6 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   context: __dirname,
   entry: [
+    // CLIENT SIDE RENDERING
     // activate HMR for React
     'react-hot-loader/patch',
     // bundle the client for webpack-dev-server
@@ -12,6 +13,9 @@ module.exports = {
     // bundle the client for hot reloading
     // only-means to only hot reload for successful updates
     'webpack/hot/only-dev-server',
+
+    // SERVER SIDE RENDERING
+    // 'webpack-hot-middleware/client?path=__webpack_hmr&timeout=2000',
     './js/ClientApp.jsx',
   ],
   devtool: 'cheap-eval-source-map',
