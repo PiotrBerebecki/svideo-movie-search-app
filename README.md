@@ -17,6 +17,7 @@ yarn dev
 - Server side rendering including routing with React Router
 - Code splitting
 - React
+- Preact
 - Redux
 - Hot Module Replacement
 - Styled Components
